@@ -277,7 +277,8 @@ class RotNetDataGenerator(Iterator):
                 is_color = int(self.color_mode == 'rgb')
                 image = cv2.imread(self.filenames[j], is_color)
                 if is_color:
-                    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+                    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                    image = np.repeat(np.expand_dims(image, axis=-1), repeats=3, axis=-1)
 
             if self.rotate:
                 # get a random angle
@@ -300,13 +301,13 @@ class RotNetDataGenerator(Iterator):
 
             # store the image and label in their corresponding batches
             batch_x[i] = rotated_image
-            batch_y[i] = rotation_angle
+            batch_y[i] = rotation_angle // 90
 
         if self.one_hot:
             # convert the numerical labels to binary labels
-            batch_y = to_categorical(batch_y, 360)
+            batch_y = to_categorical(batch_y, 4)
         else:
-            batch_y /= 360
+            batch_y /= 4
 
         # preprocess input images
         if self.preprocess_func:
