@@ -1,4 +1,4 @@
-docker run -it --mount type=bind,source=/mnt/,target=/home/mnt/ --mount --gpus all tensorflow/tensorflow:2.0.0-gpu-py3
+docker run -it --mount type=bind,source=/mnt/,target=/home/mnt/ --gpus all tensorflow/tensorflow:2.0.0-gpu-py3
 apt update
 /usr/bin/python3 -m pip install --upgrade pip
 apt install -y libsm6 libxext6 libxrender-dev

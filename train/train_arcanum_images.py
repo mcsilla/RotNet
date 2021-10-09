@@ -65,10 +65,10 @@ model.compile(loss='categorical_crossentropy',
 batch_size = args.batch_size
 nb_epoch = args.num_of_epochs
 
-output_folder = f'/home/mnt/noah/dev/csilla/cv/correct_orientation/model_rotnet_SGD_batch_size{batch_size}_img_size_{args.image_size}'
+output_folder = f'/home/models/model_rotnet_SGD_batch_size{batch_size}_img_size_{args.image_size}'
 
-# if not os.path.exists(output_folder):
-#     os.makedirs(output_folder)
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
 # callbacks
 monitor = 'val_angle_error'
