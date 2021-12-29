@@ -8,7 +8,7 @@ from keras.applications.resnet import ResNet50
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import Model
 from keras.layers import Dense, Flatten
-from keras.optimizers import SGD
+from tensorflow.keras.optimizers import SGD
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import angle_error, RotNetDataGenerator
