@@ -361,7 +361,7 @@ def display_examples(model, input, num_images=5, size=None, crop_center=False,
             crop_largest_rect=crop_largest_rect
         )
         x.append(rotated_image)
-        y.append(rotation_angle)
+        y.append(rotation_angle // 90)
 
     x = np.asarray(x, dtype='float32')
     y = np.asarray(y, dtype='float32')
@@ -369,7 +369,7 @@ def display_examples(model, input, num_images=5, size=None, crop_center=False,
     if x.ndim == 3:
         x = np.expand_dims(x, axis=3)
 
-    y = to_categorical(y, 360)
+    y = to_categorical(y, 4)
 
     x_rot = np.copy(x)
 
