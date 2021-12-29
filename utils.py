@@ -369,7 +369,7 @@ def display_examples(model, input, num_images=5, size=None, crop_center=False,
     if x.ndim == 3:
         x = np.expand_dims(x, axis=3)
 
-    y = to_categorical(y, 360)
+    y = to_categorical(y, 4)
 
     x_rot = np.copy(x)
 
