@@ -16,6 +16,7 @@ def download(output_dir):
         with zipfile.ZipFile(filepath, 'r') as z:
             z.extractall(output_dir)
         os.remove(filepath)
+        break
 
 
 def get_filenames(path):
