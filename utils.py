@@ -300,13 +300,13 @@ class RotNetDataGenerator(Iterator):
 
             # store the image and label in their corresponding batches
             batch_x[i] = rotated_image
-            batch_y[i] = rotation_angle
+            batch_y[i] = rotation_angle // 90
 
         if self.one_hot:
             # convert the numerical labels to binary labels
-            batch_y = to_categorical(batch_y, 360)
+            batch_y = to_categorical(batch_y, 4)
         else:
-            batch_y /= 360
+            batch_y /= 4
 
         # preprocess input images
         if self.preprocess_func:
