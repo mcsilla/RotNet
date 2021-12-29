@@ -23,7 +23,7 @@ pool_size = (2, 2)
 # convolution kernel size
 kernel_size = (3, 3)
 # number of classes
-nb_classes = 360
+nb_classes = 4
 
 nb_train_samples, img_rows, img_cols = X_train.shape
 img_channels = 1

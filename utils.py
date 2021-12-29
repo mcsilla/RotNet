@@ -23,17 +23,17 @@ def angle_error(y_true, y_pred):
     and the predicted angles. Each angle is represented
     as a binary vector.
     """
-    diff = angle_difference(K.argmax(y_true), K.argmax(y_pred))
+    diff = angle_difference(K.argmax(y_true) * 90, K.argmax(y_pred) * 90)
     return K.mean(K.cast(K.abs(diff), K.floatx()))
 
 
-def angle_error_regression(y_true, y_pred):
-    """
-    Calculate the mean diference between the true angles
-    and the predicted angles. Each angle is represented
-    as a float number between 0 and 1.
-    """
-    return K.mean(angle_difference(y_true * 360, y_pred * 360))
+# def angle_error_regression(y_true, y_pred):
+#     """
+#     Calculate the mean diference between the true angles
+#     and the predicted angles. Each angle is represented
+#     as a float number between 0 and 1.
+#     """
+#     return K.mean(angle_difference(y_true * 360, y_pred * 360))
 
 
 def binarize_images(x):
@@ -281,7 +281,7 @@ class RotNetDataGenerator(Iterator):
 
             if self.rotate:
                 # get a random angle
-                rotation_angle = np.random.randint(360)
+                rotation_angle = np.random.randint(4) * 90
             else:
                 rotation_angle = 0
 
@@ -352,7 +352,7 @@ def display_examples(model, input, num_images=5, size=None, crop_center=False,
     x = []
     y = []
     for image in images:
-        rotation_angle = np.random.randint(360)
+        rotation_angle = np.random.randint(4) * 90
         rotated_image = generate_rotated_image(
             image,
             rotation_angle,
