@@ -387,7 +387,9 @@ def display_examples(model, input, num_images=5, size=None, crop_center=False,
     }
 
     fig_number = 0
-    for rotated_image, true_angle, predicted_angle in zip(x_rot, y, y_pred):
+    for rotated_image, true_label, predicted_label in zip(x_rot, y, y_pred):
+        true_angle = true_label * 90
+        predicted_angle = predicted_label * 90
         original_image = rotate(rotated_image, -true_angle)
         if crop_largest_rect:
             original_image = crop_largest_rectangle(original_image, -true_angle, *size)
