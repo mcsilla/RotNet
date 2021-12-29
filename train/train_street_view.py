@@ -24,7 +24,7 @@ print(len(test_filenames), 'test samples')
 model_name = 'rotnet_street_view_resnet50'
 
 # number of classes
-nb_classes = 360
+nb_classes = 4
 # input image shape
 input_shape = (224, 224, 3)
 
@@ -35,7 +35,7 @@ base_model = ResNet50(weights='imagenet', include_top=False,
 # append classification layer
 x = base_model.output
 x = Flatten()(x)
-final_output = Dense(nb_classes, activation='softmax', name='fc360')(x)
+final_output = Dense(nb_classes, activation='softmax', name='fc4')(x)
 
 # create the new model
 model = Model(inputs=base_model.input, outputs=final_output)
